@@ -1,8 +1,10 @@
 using ScriptableObjectArchitecture;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour
+public class HealthBarHealth : MonoBehaviour
 {
+    [SerializeField] Image fillImage = null;
     [SerializeField] FloatReference currentHealth = null;
     [SerializeField] FloatReference maxHealth = null;
 
@@ -13,10 +15,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void HealthChanged()
     {
-        Debug.Log("HealthChanged");
-        if (currentHealth.Value <= 0)
-        {
-            Destroy(gameObject);
-        }
+        Debug.Log("HealthBarHealth::HealthChanged currentHealth changed: " + currentHealth.Value);
+        fillImage.fillAmount = currentHealth.Value / maxHealth.Value;
     }
 }
